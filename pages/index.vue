@@ -1,10 +1,15 @@
 <template>
   <section class="container">
     <h1>{{ title }}</h1>
-    <p> {{ message }}</p>
+    <p> {{ $store.state.message }}</p>
     <hr>
     <router-link to="/other">Go to Other</router-link>
-    <pre>[ {{ now }} ]</pre>
+  
+    <div class='link' v-on:click='doAction'>
+      <a>
+        clicked: {{ $store.state.counter }}
+      </a>
+    </div>
   </section>
 </template>
 
@@ -15,20 +20,14 @@ export default {
   data: function() {
     return {
       title: 'Hello',
-      message: 'this is message.',
-      now: 'wait...',
     };
   },
 
-  created: function() {
-    setInterval(() => {
-      let d = new Date();
-      this.now = d.getHours()
-        + ':' + d.getMinutes()
-        + ':' + d.getSeconds();
-    }, 1000);
+  methods: {
+    doAction: function() {
+      this.$store.state.counter++;
+    }
   },
-
 };
 
 </script>
@@ -56,6 +55,15 @@ pre {
 
 hr {
   margin: 10px 0px;
+}
+
+a {
+  font-size: 16pt;
+}
+
+.link {
+  background-color: #def;
+  padding: 10px;
 }
 
 </style>
