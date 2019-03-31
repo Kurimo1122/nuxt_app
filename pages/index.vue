@@ -6,11 +6,9 @@
     <router-link to="/other">Go to Other</router-link>
   
     <div class="link"
-      @click.exact="$store.commit('count', 1)"
-      @click.ctrl = "$store.commit('reset')"
-      @click.shift = "$store.commit('count', 3)"
+      @click="$store.dispatch('doit')"
     >
-      <a>
+      <a @click.stop="$store.commit('reset')">
         clicked: {{ $store.state.counter }}
       </a>
     </div>
