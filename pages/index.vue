@@ -1,11 +1,15 @@
 <template>
   <section class="container">
     <h1>{{ title }}</h1>
-    <p> {{ $store.state.message }}</p>
+    <p> {{ message }}</p>
     <hr>
     <router-link to="/other">Go to Other</router-link>
   
-    <div class='link' v-on:click='doAction'>
+    <div class="link"
+      @click.exact="$store.commit('count', 1)"
+      @click.ctrl = "$store.commit('reset')"
+      @click.shift = "$store.commit('count', 3)"
+    >
       <a>
         clicked: {{ $store.state.counter }}
       </a>
@@ -20,13 +24,8 @@ export default {
   data: function() {
     return {
       title: 'Hello',
+      message: 'this is message.'
     };
-  },
-
-  methods: {
-    doAction: function() {
-      this.$store.state.counter++;
-    }
   },
 };
 

@@ -8,6 +8,15 @@ const createStore = () => {
                 counter: 0,
             };
         },
+
+        mutations: {
+            count: function(state, n) {
+                state.counter++;
+            },
+            reset: function(state) {
+                state.counter = 0;
+            }
+        }
     });
 }
 
